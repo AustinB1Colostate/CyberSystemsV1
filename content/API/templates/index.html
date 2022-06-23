@@ -2,19 +2,23 @@
 {% block content %}
 
 <div>
-    <h1>body</h1>
+    <center>
+    <h1>RPM vs Time</h1>
     <canvas id="linechart" width = "600" heigth="600"></canvas>
+    <br><br><br><br>
+    <h2>Speed vs Time</h2>
+    </center>
     <script>
         var ctx = document.getElementById("linechart").getContext("2d");
         var linechart = new Chart(ctx, {
             type : "line",
             data: {
-                labels: {{RPMtime | safe}},
+                labels: {{rpmTime | safe}},
                 datasets:[
                     {
-                        label: "datapoints",
-                        data: {{ dataRPM | safe}},
-                        fill: false,
+                        label: "RPM vs Time",
+                        data: {{ rpm | safe}},
+                        fill: true,
                         borderColor: "rgb(75,192,192)",
                         lineTension: 0.1
                     }
