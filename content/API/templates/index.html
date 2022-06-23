@@ -1,23 +1,29 @@
-<!DOCTYPE html>
-<html>
+{% extends "upload.html" %}
+{% block content %}
 
-<head>
-    <title>Flask Template Example</title>
-</head>
-
-<body>
-    <div>
-        <p>{{ message }}</p>
-
-        <p>My Contacts:</p>
-        <!--
-        <ul>
-            {% for contact in contacts %}
-            <li>{{ contacts }}</li>
-            {% endfor %}
-        </ul>
-        -->
-    </div>
-</body>
-
-</html>
+<div>
+    <h1>body</h1>
+    <canvas id="linechart" width = "600" heigth="600"></canvas>
+    <script>
+        var ctx = document.getElementById("linechart").getContext("2d");
+        var linechart = new Chart(ctx, {
+            type : "line",
+            data: {
+                labels: {{RPMtime | safe}},
+                datasets:[
+                    {
+                        label: "datapoints",
+                        data: {{ dataRPM | safe}},
+                        fill: false,
+                        borderColor: "rgb(75,192,192)",
+                        lineTension: 0.1
+                    }
+                ]
+            },
+            options:{
+                responsive: false
+            }
+        });
+    </script>
+</div>
+{% endblock %}

@@ -44,7 +44,9 @@ def uploadfile():
          f.save(os.path.join(app.config['UPLOAD_FOLDER'] , fileName)) # this will secure the file
          #return 'file uploaded successfully' # Display thsi message after uploading
          data = json.loads(decoder("C:/Users/austi/Hugo/Cyber_Website_Temp/ProjectFile/CyberSystemsV1/CyberSystemsV1/uploads/" + f.filename))
-         return render_template("index.html", contacts = data["rpmTime"])
+         time = data["rpmTime"]
+         rpmData = data["rpm"]
+         return render_template("index.html", RPMtime = time, dataRPM = rpmData)
       else:
          return "not working"
 
@@ -52,5 +54,4 @@ def uploadfile():
 
 ######
 if __name__ == '__main__':
-   app.debug = True
    app.run() # running the flask app
